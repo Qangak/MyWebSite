@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/mySytle.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="div-header">
+        <a href="@Url.Action("Index","CustomerProducts")" class="button">TRANG CHỦ</a>
+    </div>
+    <div id="div-main">
+        <div id="div-left">
+            <a href="@Url.Action("Index","Products")" class="btn btn-default"> XEM </a>
+        </div>
+        <div id="div-right">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>
+
+@*<a href="#"  class="top-t" >Nhà bán</a>
+    <a href="#"  class="top-t" >Nhà cho thuê</a>*@

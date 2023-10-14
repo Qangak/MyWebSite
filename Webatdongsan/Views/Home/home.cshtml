@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "home";
+    Layout = "~/Views/Shared/HomeView.cshtml";
+}
+
+<style>
+    .product-card {
+        border: 1px solid #ccc;
+        border-radius: 3%;
+        text-align: center;
+        margin: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .product-image {
+        margin-top: 5px;
+        width: 350px;
+        height: 280px;
+    }
+
+    .product-details {
+        text-align: left;
+        margin: 5px 10px;
+        padding: 10px;
+        background-color: #fafafa;
+    }
+
+    .product-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .product-price {
+        font-size: 16px;
+    }
+
+    .product-address {
+        font-style: italic;
+    }
+
+    .product-link {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+        .product-link:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div class="row" style="padding-left: 40px">
+    @foreach (var sanpham in Model)
+    {
+        if (sanpham.WhiteList == 1)
+        {
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="product-card">
+                    <img class="product-image" src="~/Images/@sanpham.ImagePro" alt="@sanpham.NamePro">
+
+                    <div class="product-details">
+                        <h4 class="product-title">@sanpham.NamePro</h4>
+                        <p class="product-price">Giá: @sanpham.Price $</p>
+                        <p class="product-address">Địa chỉ: @sanpham.Address</p>
+                        <p>Diện tích: @sanpham.Area /m2</p>
+
+                        @Html.ActionLink("CHI TIẾT", "Details", new { id = sanpham.ProductID }, new { @class = "product-link" })
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+</div>
+
+
+
+

@@ -1,0 +1,104 @@
+﻿@using Webatdongsan.Models
+@model List<YeuThichItem>
+
+@{
+    ViewBag.Title = "GetInfo";
+    Layout = "~/Views/Shared/HomeView.cshtml";
+}
+
+<style>
+    /* Custom styles for the table */
+    .table-container {
+        margin: 10px auto;
+        width: 90%;
+    }
+
+        .table-container h2 {
+            text-align: center;
+        }
+
+        .table-container hr {
+            border: 1px solid #ccc;
+        }
+
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-container th,
+        .table-container td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .table-container th {
+            background-color: #f2f2f2;
+        }
+
+        .table-container tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table-container tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .table-container img {
+            max-width: 100px;
+            max-height: 80px;
+        }
+
+        .table-container .btn {
+            padding: 5px 10px;
+        }
+
+        .table-container .btn-success {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .table-container .btn-danger {
+            background-color: #f44336;
+            color: #fff;
+        }
+</style>
+
+<div class="table-container">
+    <h2>Danh mục yêu thích</h2>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>MÃ SẢN PHẨM</th>
+                <th>TÊN SẢN PHẨM</th>
+                <th>ẢNH</th>
+                <th>GIÁ</th>
+                <th>ĐỊA CHỈ</th>
+                <th>CHI TIẾT</th>
+                <th>XÓA</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.ProductID</td>
+                    <td>@product.NamePro</td>
+                    <td>
+                        <img src="~/Images/@product.ImagePro" alt="@product.NamePro" />
+                    </td>
+                    <td>@product.Price</td>
+                    <td>@product.Address</td>
+                    <td>
+                        @Html.ActionLink("Xem chi tiết", "Details", "CustomerProducts", new { id = product.ProductID }, new { @class = "btn btn-success" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Xóa", "Remove", "YeuThich", new { id = product.ProductID }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

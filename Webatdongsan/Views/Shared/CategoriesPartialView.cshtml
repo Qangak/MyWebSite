@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Webatdongsan.Models.Category>
+
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                @Html.ActionLink(item.NameCate, "GetProductsByCateId", "CustomerProducts", new { id = item.Id }, new
+       {
+           @class = "list-group- item"
+                })
+            </li>
+        }
+    </ul>

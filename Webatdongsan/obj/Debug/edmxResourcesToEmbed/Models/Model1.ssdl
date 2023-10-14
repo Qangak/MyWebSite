@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebbatdongsanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="IDCate" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCate" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="NameCate" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="IdNguoiDung" />
+    </Key>
+    <Property Name="IdNguoiDung" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="255" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+    <Property Name="email" Type="varchar" MaxLength="255" />
+    <Property Name="HoTen" Type="varchar" MaxLength="255" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="NgaySinh" Type="date" />
+    <Property Name="Role" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NamePro" Type="nvarchar(max)" />
+    <Property Name="DecriptionPro" Type="nvarchar(max)" />
+    <Property Name="Category" Type="nchar" MaxLength="20" />
+    <Property Name="Price" Type="int" />
+    <Property Name="ImagePro" Type="nvarchar(max)" />
+    <Property Name="Area" Type="float" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="int" />
+    <Property Name="LienHe" Type="varchar" MaxLength="12" />
+    <Property Name="NgayDang" Type="datetime" />
+    <Property Name="IdNguoiDung" Type="int" />
+    <Property Name="ImagePro1" Type="nvarchar(max)" />
+    <Property Name="ImagePro2" Type="nvarchar(max)" />
+    <Property Name="WhiteList" Type="int" />
+    <Property Name="IDCate" Type="int" />
+  </EntityType>
+  <EntityType Name="YeuThich">
+    <Key>
+      <PropertyRef Name="idYeuThich" />
+    </Key>
+    <Property Name="idYeuThich" Type="int" Nullable="false" />
+    <Property Name="IdNguoiDung" Type="int" />
+    <Property Name="ProductID" Type="int" />
+  </EntityType>
+  <Association Name="FK__Products__IdNguo__29572725">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="IdNguoiDung" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="IdNguoiDung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YeuThich__IdNguo__2D27B809">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="YeuThich" Type="Self.YeuThich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="IdNguoiDung" />
+      </Principal>
+      <Dependent Role="YeuThich">
+        <PropertyRef Name="IdNguoiDung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YeuThich__Produc__2E1BDC42">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="YeuThich" Type="Self.YeuThich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="YeuThich">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pro_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="IDCate" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WebbatdongsanModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YeuThich" EntityType="Self.YeuThich" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Products__IdNguo__29572725" Association="Self.FK__Products__IdNguo__29572725">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YeuThich__IdNguo__2D27B809" Association="Self.FK__YeuThich__IdNguo__2D27B809">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="YeuThich" EntitySet="YeuThich" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YeuThich__Produc__2E1BDC42" Association="Self.FK__YeuThich__Produc__2E1BDC42">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="YeuThich" EntitySet="YeuThich" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pro_Category" Association="Self.FK_Pro_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b0b4449610f244d8b49cd0d0054f6734" Name="Diagram1">
+        <EntityTypeShape EntityType="WebbatdongsanModel.Category" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebbatdongsanModel.Customer" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebbatdongsanModel.Products" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebbatdongsanModel.YeuThich" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="WebbatdongsanModel.FK_Pro_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="WebbatdongsanModel.FK__Products__IdNguo__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="WebbatdongsanModel.FK__YeuThich__IdNguo__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="WebbatdongsanModel.FK__YeuThich__Produc__3D5E1FD2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

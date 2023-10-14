@@ -1,0 +1,197 @@
+﻿
+@{
+    ViewBag.Title = "home";
+    Layout = "~/Views/Shared/Login.cshtml";
+}
+<style>
+    .product-card {
+        border: 1px solid #ccc;
+        border-radius: 3%;
+        text-align: center;
+        margin: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .product-image {
+        margin-top: 5px;
+        width: 350px;
+        height: 280px;
+    }
+
+    .product-details {
+        text-align: left;
+        margin: 5px 10px;
+        padding: 10px;
+        background-color: #fafafa;
+    }
+
+    .product-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .product-price {
+        font-size: 16px;
+    }
+
+    .product-address {
+        font-style: italic;
+    }
+
+    .product-link {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+        .product-link:hover {
+            background-color: #0056b3;
+        }
+</style>
+@*<link href="~/Content/newStyle.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <head>
+
+    </head>
+    <body>
+
+        <div class="Header">
+            <a style="font-weight: bold; color: rgb(247, 154, 16); font-size: 40pt;">PremireHomes.com</a>
+            <div class="buttongroup" role="group">
+                <a href="@Url.Action("Index","CustomerProducts")" class="button">TRANG CHỦ</a>
+                <a href="@Url.Action("Home","Home")" class="button">GIỚI THIỆU</a>
+                <a href="@Url.Action("Home","Home")" class="button">DỰ ÁN</a>
+
+                <a href="@Url.Action("Home","Home")" class="button">
+                    BÁN/THUÊ
+                </a>
+                <a href="@Url.Action("Chuyen", "CustomerProducts")" class="button">ĐĂNG BÀI</a>
+                <a href="@Url.Action("GetInfo","YeuThich")" class="button">YÊU THÍCH</a>
+                <a href="@Url.Action("Login","User")" class="button">ĐĂNG XUẤT</a>
+                <a href="@Url.Action("Chuyen", "CustomerProducts")">Chuyển đến Controller B</a>
+
+            </div>
+            <p style="font-weight: bold; color: rgb(247, 154, 16); font-size: 30pt;margin-top:20px;">Tìm kiếm ngôi nhà yêu thích</p>
+            <div class="Search">
+                <form action="" id="search-box" style="float:right;">
+                    @using (Html.BeginForm("Index", "CustomerProducts"))
+                    {
+                        @Html.TextBox("SearchString", "")
+                        <input type="Submit" class="btn btn-default" value="Search" />
+                    }
+                    <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+            <div class="top">@Html.Action("GetProductsByCategory", "CustomerProducts")</div>
+        </div>
+        <div style="width: 100%; background-color: rgb(255,255,255);padding-left:30px;padding-right:30px">*@
+<div class="row" style="padding-left: 40px">
+    @foreach (var sanpham in Model)
+    {
+        if (sanpham.WhiteList == 1)
+        {
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="product-card">
+                    <img class="product-image" src="~/Images/@sanpham.ImagePro" alt="@sanpham.NamePro">
+
+                    <div class="product-details">
+                        <h4 class="product-title">@sanpham.NamePro</h4>
+                        <p class="product-price">Giá: @sanpham.Price $</p>
+                        <p class="product-address">Địa chỉ: @sanpham.Address</p>
+                        <p>Diện tích: @sanpham.Area /m2</p>
+
+                        @Html.ActionLink("CHI TIẾT", "Details", new { id = sanpham.ProductID }, new { @class = "product-link" })
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+</div>
+
+
+
+@*</div>
+    <div class="footer">
+        <div class="Contact">
+            <h1 class="col-lg-2 col-md-2 col-sm-4">Hotline24/7</h1>
+            <h1 class="col-lg-2 col-md-2 col-sm-4">Email</h1>
+            <h1 class="col-lg-2 col-md-2 col-sm-4">Mạng xã hội</h1>
+        </div>
+        <div class="Line">
+        </div>
+        <div class="footerinfo">
+            <div class="text col-lg-4 ">
+                <h2>
+                    PremierHome.com
+                </h2>
+                <p>
+                    Là nơi chúng tôi đã lựa chọn rất kỹ càng và cho ra những bất động sản tiềm năng nhất cho tất cả mọi người cùng đầu tư và phát triển
+                </p>
+            </div>
+            <div class="text col-lg-4 ">
+                <h2>
+                    thông tin liên hệ
+                </h2>
+                <p>
+                    địa chỉ
+                </p>
+
+                <p>
+                    Số điện thoại
+                </p>
+
+                <p>
+                    Email
+                </p>
+
+                <p>
+                    Website
+                </p>
+            </div>
+            <div class="text col-lg-4">
+                <h2>
+                    Hỗ trợ
+                </h2>
+                <p>
+                    Trang chủ
+                </p>
+
+                <p>
+                    Giới thiệu
+                </p>
+
+                <p>
+                    Bán hoặc cho thuê
+                </p>
+            </div>
+            <div class="text col-lg-4 ">
+                <h2>
+                    Giới thiệu
+                </h2>
+                <p>
+                    Dự án
+                </p>
+
+                <p>
+                    Thuê nhà
+                </p>
+
+                <p>
+                    Mua nhà
+                </p>
+            </div>
+        </div>
+        <div class="Slogan">
+            <h3>PremierHome.com - Những ngôi nhà hàng đầu</h3>
+        </div>
+    </div>*@
+</body>
+
+
+

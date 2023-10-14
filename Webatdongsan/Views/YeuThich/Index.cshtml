@@ -1,0 +1,47 @@
+﻿@using Webatdongsan.Models
+@model List<YeuThichItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/HomeView.cshtml";
+}
+
+<div style="margin: 10px auto; width: 90%;">
+    <h2 style="text-align: center">THÔNG TIN GIỎ HÀNG</h2>
+    <h3 style="text-align: left">Khuyến mại tổng giá trên 5 triệu giảm 5%</h3>
+    <hr />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>MÃ SẢN PHẨM</th>
+                <th>TÊN</th>
+                <th>ẢNH</th>
+                <th>ĐƠN GIÁ</th>
+                <th>CHI TIẾT</th>
+                <th>XÓA</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.ProductID</td>
+                    <td>@product.NamePro</td>
+                    <td>
+                        <img src="~/Images/@product.ImagePro" width=" 200" height="180" />
+                    </td>
+                   
+                    <td>
+                        @Html.ActionLink("Remove", "Remove", "YeuThich", new
+                        {
+                            id =
+                product.ProductID
+                        }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

@@ -1,0 +1,192 @@
+﻿@model Webatdongsan.Models.Products
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Master1.cshtml";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<style>
+    .imgBox {
+        background-color: #222;
+        color: #fff;
+        background-size: cover;
+        background-position: center;
+        max-width: 450px;
+        height: 300px;
+        margin: auto;
+        position: relative;
+    }
+</style>
+
+<div style="margin: 10px auto; width: 70%;">
+    <h2 style="text-align: center">TẠO MỚI PRODUCT</h2>
+    @using (Html.BeginForm("Create", "Products", FormMethod.Post, new
+    {
+        @enctype = "multipart/form-data"
+    }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <hr />
+
+            @Html.ValidationSummary(true, "", new
+            {
+                @class = "text-danger"
+            })
+
+            <div class="form-group">
+                TÊN DỰ ÁN
+                <div class="col-md-10">
+
+                    @Html.EditorFor(model => model.NamePro, new
+                    {
+                    htmlAttributes = new { @class = "form-control" }
+                    })
+                    @Html.ValidationMessageFor(model => model.NamePro,
+                    "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                MÔ TẢ
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DecriptionPro, new
+                    {
+                    htmlAttributes = new { @class = "form-control" }
+                    })
+                    @Html.ValidationMessageFor(model =>
+                    model.DecriptionPro, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                ĐỊA CHỈ
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new
+                    {
+                    htmlAttributes = new { @class = "form-control" }
+                    })
+                    @Html.ValidationMessageFor(model =>
+                    model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                DIỆN TÍCH
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Area, new
+                    {
+                    htmlAttributes = new { @class = "form-control" }
+                    })
+                    @Html.ValidationMessageFor(model =>
+                    model.Area, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*them*@
+            <div class="form-group">
+                LIÊN HỆ
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LienHe, new
+                    {
+                    htmlAttributes = new { @class = "form-control" }
+                    })
+                    @Html.ValidationMessageFor(model =>
+                    model.LienHe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                NGÀY ĐĂNG
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NgayDang, new
+                    {
+                    htmlAttributes = new { @class = "form-control" }
+                    })
+                    @Html.ValidationMessageFor(model =>
+                    model.NgayDang, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                NHÓM SẢN PHẨM
+                <div class="col-md-10">
+                    @Html.DropDownList("Category", null, htmlAttributes:
+                    new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Category,
+                    "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                GIÁ
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new
+                    {
+                    htmlAttributes = new { @class = "form-control" }
+                    })
+                    @Html.ValidationMessageFor(model => model.Price, "",
+                    new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label>HÌNH</label>
+                <div class="col-md-10">
+                    <input type="file" name="ImagePro" onchange="loadFile(event)" />
+                    @Html.ValidationMessageFor(model => model.ImagePro, "", new { @class = "text-danger" })
+                    <div class="imgBox" id="imgBox">
+                        <!-- Hiển thị hình ảnh đã chọn ở đây -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>HÌNH 1</label>
+                <div class="col-md-10">
+                    <input type="file" name="ImagePro1" onchange="loadFile1(event)" />
+                    @Html.ValidationMessageFor(model => model.ImagePro1, "", new { @class = "text-danger" })
+                    <div class="imgBox" id="imgBox1">
+                        <!-- Hiển thị hình ảnh đã chọn ở đây -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>HÌNH 2</label>
+                <div class="col-md-10">
+                    <input type="file" name="ImagePro2" onchange="loadFile2(event)" />
+                    @Html.ValidationMessageFor(model => model.ImagePro2, "", new { @class = "text-danger" })
+                    <div class="imgBox" id="imgBox2">
+                        <!-- Hiển thị hình ảnh đã chọn ở đây -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10 mb-3 mt-3">
+                    <input type="submit" value="TẠO MỚI" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+
+<script>
+    var imgBox = document.getElementById("imgBox");
+
+    var loadFile = function (event) {
+        showImage(event.target.files[0]);
+    }
+
+    var loadFile1 = function (event) {
+        showImage(event.target.files[0], "imgBox1");
+    }
+
+    var loadFile2 = function (event) {
+        showImage(event.target.files[0], "imgBox2");
+    }
+
+    function showImage(file, imgBoxId = "imgBox") {
+        var box = document.getElementById(imgBoxId);
+        box.style.backgroundImage = "url(" + URL.createObjectURL(file) + ")";
+    }
+</script>

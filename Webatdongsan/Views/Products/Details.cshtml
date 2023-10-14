@@ -1,0 +1,95 @@
+﻿@model Webatdongsan.Models.Products
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<div style="margin: 10px auto; width: 70%;">
+    <h2 style="text-align: center">CHI TIẾT SẢN PHẨM</h2>
+    <div>
+        <hr />
+
+        <dl class="dl-horizontal">
+            <dt>
+                TÊN SẢN PHẨM
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NamePro)
+            </dd>
+            <dt>
+                MÔ TẢ
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DecriptionPro)
+            </dd>
+
+            <dt>
+                ĐỊA CHỈ
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                DIỆN TÍCH
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Area)
+            </dd>
+
+            <dt>
+                LIÊN HỆ
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LienHe)
+            </dd>
+
+            <dt>
+                NGÀY ĐĂNG
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NgayDang)
+            </dd>
+
+            <dt>
+                GIÁ
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt>
+                HÌNH MINH HỌA
+            </dt>
+            <dd>
+                <img style=" width: 400px ; height:350px" ; src="~/Images/@Model.ImagePro" />
+            </dd>
+            <dt>
+                HÌNH MINH HỌA 2
+            </dt>
+            <dd>
+                <img style=" width: 400px ; height:350px" ; src="~/Images/@Model.ImagePro1" />
+            </dd>
+            <dt>
+                HÌNH MINH HỌA 3
+            </dt>
+            <dd>
+                <img style=" width: 400px ; height:350px" ; src="~/Images/@Model.ImagePro2" />
+            </dd>
+            <dt>
+                NHÓM SẢN PHẨM
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Category1.NameCate)
+            </dd>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }, new
+        {
+            @class
+        = "btn btn-success"
+        }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

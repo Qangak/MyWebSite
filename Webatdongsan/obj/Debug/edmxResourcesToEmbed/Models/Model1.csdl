@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebbatdongsanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="IDCate" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDCate" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NameCate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Pro_Category" FromRole="Category" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="IdNguoiDung" />
+    </Key>
+    <Property Name="IdNguoiDung" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="HoTen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Products__IdNguo__38996AB5" FromRole="Customer" ToRole="Products" />
+    <NavigationProperty Name="YeuThich" Relationship="Self.FK__YeuThich__IdNguo__3C69FB99" FromRole="Customer" ToRole="YeuThich" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NamePro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DecriptionPro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="ImagePro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Area" Type="Double" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="LienHe" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="NgayDang" Type="DateTime" Precision="3" />
+    <Property Name="IdNguoiDung" Type="Int32" />
+    <NavigationProperty Name="Category1" Relationship="Self.FK_Pro_Category" FromRole="Products" ToRole="Category" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Products__IdNguo__38996AB5" FromRole="Products" ToRole="Customer" />
+    <NavigationProperty Name="YeuThich" Relationship="Self.FK__YeuThich__Produc__3D5E1FD2" FromRole="Products" ToRole="YeuThich" />
+    <Property Name="ImagePro1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePro2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WhiteList" Type="Int32" />
+    <Property Name="IDCate" Type="Int32" />
+  </EntityType>
+  <EntityType Name="YeuThich">
+    <Key>
+      <PropertyRef Name="idYeuThich" />
+    </Key>
+    <Property Name="idYeuThich" Type="Int32" Nullable="false" />
+    <Property Name="IdNguoiDung" Type="Int32" />
+    <Property Name="ProductID" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__YeuThich__IdNguo__3C69FB99" FromRole="YeuThich" ToRole="Customer" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__YeuThich__Produc__3D5E1FD2" FromRole="YeuThich" ToRole="Products" />
+  </EntityType>
+  <Association Name="FK_Pro_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="IDCate" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Products__IdNguo__38996AB5">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="IdNguoiDung" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="IdNguoiDung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YeuThich__IdNguo__3C69FB99">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="YeuThich" Type="Self.YeuThich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="IdNguoiDung" />
+      </Principal>
+      <Dependent Role="YeuThich">
+        <PropertyRef Name="IdNguoiDung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YeuThich__Produc__3D5E1FD2">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="YeuThich" Type="Self.YeuThich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="YeuThich">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WebbatdongsanEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="YeuThich" EntityType="Self.YeuThich" />
+    <AssociationSet Name="FK_Pro_Category" Association="Self.FK_Pro_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Products__IdNguo__38996AB5" Association="Self.FK__Products__IdNguo__38996AB5">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YeuThich__IdNguo__3C69FB99" Association="Self.FK__YeuThich__IdNguo__3C69FB99">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="YeuThich" EntitySet="YeuThich" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YeuThich__Produc__3D5E1FD2" Association="Self.FK__YeuThich__Produc__3D5E1FD2">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="YeuThich" EntitySet="YeuThich" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

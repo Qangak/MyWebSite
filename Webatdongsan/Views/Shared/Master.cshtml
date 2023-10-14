@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/mySytle.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="div-header">
+        <a href="@Url.Action("Index","CustomerProducts")" class="button">TRANG CHỦ</a>
+    </div>
+    <div id="div-main">
+        <div id="div-left">
+            <ul style="list-style-type:none;padding-left:0px;transform:translateY(150px)">                
+                <li>
+                    <a href="@Url.Action("Create","Categories")" class="btn btn-default">Categories</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ADView","Products")" class="btn btn-default">Product</a>
+                </li>
+            </ul>
+        </div>
+        <div id="div-right">
+            @RenderBody()
+        </div>
+    </div>
+    <div id="div-footer">
+        <p> 2023 Trang web bất động sản.Địa chỉ :162 Yên Lãng, Hà Nội</p>
+    </div>
+</body>
+</html>
+
+@*<a href="#"  class="top-t" >Nhà bán</a>
+    <a href="#"  class="top-t" >Nhà cho thuê</a>*@
